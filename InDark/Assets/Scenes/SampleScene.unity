@@ -319,6 +319,8 @@ GameObject:
   - component: {fileID: 935819525}
   - component: {fileID: 935819524}
   - component: {fileID: 935819522}
+  - component: {fileID: 935819523}
+  - component: {fileID: 935819526}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -338,10 +340,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d150dc4291e87b94fa18ff3b33450a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &935819523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935819521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf9a5e342419fad409fa60a6cbc251bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 10
+  HPcurrent: 0
+  maxAmmo9mm: 0
+  ammo9mmCurrent: 0
   walkSpeed: 4
-  runSpeed: 8
-  Acceleration: 20
-  Deceleration: 80
+  runSpeed: 10
+  rollSpeed: 15
+  runningStaminaCost: 1
+  rollDelay: 0.8
+  Acceleration: 75
+  Deceleration: 70
+  MaxStamina: 10
+  staminaCurrent: 0
+  maxRoadFlare: 10
+  roadFlareCurrent: 0
+  maxMedicineChest: 3
+  medicalChestCurrent: 0
+  delayRecoveryStaminaif0: 1
+  speedRecoveryStamina: 0.5
 --- !u!61 &935819524
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -383,6 +412,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &935819526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935819521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e69ae9d7947cac4b96a077b06025aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveInputX: 0
+  moveInputY: 0
+  isRollPressed: 0
 --- !u!1 &977642201
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2066003253}
+  - component: {fileID: 2066003254}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -546,3 +591,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2066003254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066003252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6806c83d4ff03844b9679bbaa17fa8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sppedMovemetnInPatrol: 3
+  sppedMovemetnInAgressiv: 8
+  maxHP: 10
+  damage: 2
+  viewDistance: 8
+  distanceAfraidLight: 2
+  isAfraidLight: 1

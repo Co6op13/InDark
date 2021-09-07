@@ -7,15 +7,25 @@ namespace character
 
     public class CharacterData : MonoBehaviour
     {
+        internal CharacterMovement movement;
+        internal CharacterInput input;
+
         // данные персонажа
-        [SerializeField] private int maxHP = 10;
-        [SerializeField] private int HPcurrent;
-        [SerializeField] private int maxAmmo9mm;
-        [SerializeField] private int ammo9mmCurrent;
-        [SerializeField] private float walkSpped = 4f;
-        [SerializeField] private float runSpeed = 10f;
+        [SerializeField] internal int maxHP = 10;
+        [SerializeField] internal int HPcurrent;
+        [SerializeField] internal int maxAmmo9mm;
+        [SerializeField] internal int ammo9mmCurrent;
+        [SerializeField] internal float walkSpeed = 4f;
+        [SerializeField] internal float runSpeed = 10f;
+        [SerializeField] internal float rollSpeed = 15f;
         [SerializeField, Tooltip("Cost stamina  in units per second on running")]
-        private float runningStaminaCost = 1;
+        internal float runningStaminaCost = 1;
+        [SerializeField, Tooltip("Delay after rolling, in units per second, that the character moves.")]
+        internal float rollDelay = 0.8f;
+        [SerializeField, Tooltip("Acceleration while grounded.")]
+        internal float Acceleration = 75;
+        [SerializeField, Tooltip("Deceleration applied when character is grounded and not attempting to move.")]
+        internal float Deceleration = 70;
         [SerializeField] private float MaxStamina = 10f;
         [SerializeField] private float staminaCurrent;
         [SerializeField] private int maxRoadFlare = 10;
@@ -23,17 +33,18 @@ namespace character
         [SerializeField] private int maxMedicineChest = 3;
         [SerializeField] private int medicalChestCurrent;
         [SerializeField, Tooltip("Delay recovery stamina in seconds when stamina = 0")]
-        private float delayRecoveryStaminaif0 = 1f;
+        internal float delayRecoveryStaminaif0 = 1f;
         [SerializeField, Tooltip("Recovery stamina in unit per seconds")]
-        private float speedRecoveryStamina = 0.5f;
-
-        public int MedicalChestCurrent { get => medicalChestCurrent; }
-        public float WalkSpped { get => walkSpped; }
-        public float RunSpeed { get => runSpeed; }
-        public float StaminaCurrent { get => staminaCurrent; }
+        internal float speedRecoveryStamina = 0.5f;
+        internal BoxCollider2D boxCollider2D;
+        internal Animator animatorGFX;
 
         private void Start()
         {
+            input = gameObject.GetComponent<CharacterInput>();
+            movement = gameObject.GetComponent<CharacterMovement>();
+            animatorGFX = gameObject.transform.GetComponentInChildren<Animator>();
+            boxCollider2D = GetComponent<BoxCollider2D>();
             HPcurrent = maxHP;
             staminaCurrent = MaxStamina;
             roadFlareCurrent = maxRoadFlare;
