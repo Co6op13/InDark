@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace character
+namespace Character
 {
     public class CharacterInput : MonoBehaviour
     {
@@ -25,24 +25,21 @@ namespace character
             moveInputX = Input.GetAxisRaw("Horizontal");
             moveInputY = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetButtonDown("Roll")&& ((moveInputX != 0) | (moveInputY != 0)))
-            {                
-                isRollPressed = true;
-                Invoke("RollComplite", character.rollDelay);
-            }
-       
-            if (!isRollPressed)
+            if (Input.GetButtonDown("Roll") && ((moveInputX != 0) | (moveInputY != 0)))
             {
+                isRollPressed = true;
+            }
+            else isRollPressed = false;
+       
+            //if (!isRollPressed)
+            //{
                 if (Input.GetButton("Alternative"))
                     isAlternativePressed = true;
                 else
                     isAlternativePressed = false;
-            }
+            //}
         }
 
-        void RollComplite()
-        {
-            isRollPressed = false;
-        }
+
     }
 }

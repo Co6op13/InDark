@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace character
+namespace Character
 {
 
     public class CharacterData : MonoBehaviour
     {
         internal CharacterMovement movement;
         internal CharacterInput input;
-
+        internal CharacterAnimation animation;
+        internal CharacterCollision collision;
         // данные персонажа
         [SerializeField] internal int maxHP = 10;
         [SerializeField] internal int HPcurrent;
@@ -37,13 +38,14 @@ namespace character
         [SerializeField, Tooltip("Recovery stamina in unit per seconds")]
         internal float speedRecoveryStamina = 0.5f;
         internal BoxCollider2D boxCollider2D;
-        internal Animator animatorGFX;
+       
 
         private void Start()
         {
             input = gameObject.GetComponent<CharacterInput>();
             movement = gameObject.GetComponent<CharacterMovement>();
-            animatorGFX = gameObject.transform.GetComponentInChildren<Animator>();
+            animation = gameObject.GetComponent<CharacterAnimation>();
+            collision = gameObject.GetComponent<CharacterCollision>();
             boxCollider2D = GetComponent<BoxCollider2D>();
             HPcurrent = maxHP;
             staminaCurrent = MaxStamina;
