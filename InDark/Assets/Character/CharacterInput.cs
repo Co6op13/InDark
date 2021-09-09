@@ -7,19 +7,16 @@ namespace Character
     public class CharacterInput : MonoBehaviour
     {
         private CharacterData character;
-        [SerializeField] internal float moveInputX;
-        [SerializeField] internal float moveInputY;
-        [SerializeField] internal bool isRollPressed = false;
+        internal float moveInputX;
+        internal float moveInputY;
+        internal bool isRollPressed = false;
         internal bool isAlternativePressed = false;
 
-        // Start is called before the first frame update
         void Start()
         {
             character = gameObject.GetComponent<CharacterData>();
-
         }
 
-        // Update is called once per frame
         void Update()
         {
             moveInputX = Input.GetAxisRaw("Horizontal");
@@ -30,16 +27,11 @@ namespace Character
                 isRollPressed = true;
             }
             else isRollPressed = false;
-       
-            //if (!isRollPressed)
-            //{
-                if (Input.GetButton("Alternative"))
-                    isAlternativePressed = true;
-                else
-                    isAlternativePressed = false;
-            //}
+
+            if (Input.GetButton("Alternative"))
+                isAlternativePressed = true;
+            else
+                isAlternativePressed = false;
         }
-
-
     }
 }

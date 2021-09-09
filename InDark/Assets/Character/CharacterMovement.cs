@@ -12,11 +12,9 @@ namespace Character
         private Vector2 velocity;
         internal bool isRoll = false;
 
-
         private void Awake()
         {
-            character = gameObject.GetComponent<CharacterData>();            
-      
+            character = gameObject.GetComponent<CharacterData>();  
         }
 
         private void Update()

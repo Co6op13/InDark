@@ -9,7 +9,7 @@ namespace Character
     {
         internal CharacterMovement movement;
         internal CharacterInput input;
-        internal CharacterAnimation animation;
+        internal CharacterAnimation animationC;
         internal CharacterCollision collision;
         // данные персонажа
         [SerializeField] internal int maxHP = 10;
@@ -44,7 +44,7 @@ namespace Character
         {
             input = gameObject.GetComponent<CharacterInput>();
             movement = gameObject.GetComponent<CharacterMovement>();
-            animation = gameObject.GetComponent<CharacterAnimation>();
+            animationC = gameObject.GetComponent<CharacterAnimation>();
             collision = gameObject.GetComponent<CharacterCollision>();
             boxCollider2D = GetComponent<BoxCollider2D>();
             HPcurrent = maxHP;

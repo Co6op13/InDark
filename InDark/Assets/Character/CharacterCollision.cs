@@ -7,13 +7,12 @@ namespace Character
     public class CharacterCollision : MonoBehaviour
     {
         private CharacterData character;
-        // Start is called before the first frame update
+
         void Start()
         {
             character = gameObject.GetComponent<CharacterData>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             OnCollisionWall();

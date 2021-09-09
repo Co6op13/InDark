@@ -7,21 +7,20 @@ namespace Character
     public class CharacterAnimation : MonoBehaviour
     {
         private CharacterData character;
-       [SerializeField]  private Animator animatorGFX;
+        private Animator animatorGFX;
         private string currentAnimaton;
         //Animation States
         const string CHARACTER_IDLE = "CharacterIdle";
         const string CHARACTER_RUN = "CharacterRun";
         const string CHARACTER_WALK = "CharacterWalk";
         const string CHARACTER_ROLL = "CharacterRoll";
-        // Start is called before the first frame update
+
         private void Awake()
         {
             character = gameObject.GetComponent<CharacterData>();
             animatorGFX = gameObject.transform.GetComponentInChildren<Animator>();
         }
 
-        // Update is called once per frame
         void Update()
         {
 
@@ -39,7 +38,6 @@ namespace Character
             }
             else
                 ChangeAnimationState(CHARACTER_IDLE);
-
         }
       
         void ChangeAnimationState(string newAnimation)
