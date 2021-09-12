@@ -323,9 +323,9 @@ GameObject:
   - component: {fileID: 935819526}
   - component: {fileID: 935819527}
   - component: {fileID: 935819528}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Character
-  m_TagString: Player
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -685,8 +685,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215023379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5513, y: -1.4459, z: 0}
-  m_LocalScale: {x: 1.2242, y: 3.6202, z: 1}
+  m_LocalPosition: {x: -2.65, y: 1.9924, z: 0}
+  m_LocalScale: {x: 1.2242, y: 9.224993, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 2066003255}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -717,7 +717,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066003252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.52, y: 2.78, z: 0}
+  m_LocalPosition: {x: 0.37, y: 1.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8964416}
@@ -736,14 +736,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6806c83d4ff03844b9679bbaa17fa8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMovemetnInPatrol: 0
-  speedMovemetnInAgressiv: 0
-  maxHP: 10
-  damage: 2
-  viewDistance: 3
-  distanceAfraidLight: 2
-  isAfraidLight: 1
+  isActiv: 1
+  isInSearch: 0
+  isAgressiv: 0
+  speedMovemetnInPatrol: 3
+  speedMovemetnInAgressiv: 8
+  maxHP: 0
+  damage: 0
+  viewDistance: 8
+  PatrolDistance: 4
+  distanceAfraidLight: 0
+  isAfraidLight: 0
   timeLagBetweenViews: 0.2
+  targetToAttack:
+  - {fileID: 0}
+  targetlayerMask:
+    serializedVersion: 2
+    m_Bits: 439
+  behavior: {fileID: 0}
+  stateIdle: {fileID: 11400000, guid: 60c400ee8a68ef44f926206860a0860d, type: 2}
+  stateWalk: {fileID: 0}
+  stateAttack: {fileID: 11400000, guid: 20019d2c1341a954c86e26bb7662c7fa, type: 2}
+  statePatrol: {fileID: 11400000, guid: 9f092afa6af2cdd4085a43a0ba261f61, type: 2}
+  FoundTarget: {fileID: 0}
 --- !u!114 &2066003255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,6 +768,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2066003252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31dce8c04e1946148bee6b1a11a4643a, type: 3}
+  m_Script: {fileID: 11500000, guid: e1eb950fbb79199429e04dede7843c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

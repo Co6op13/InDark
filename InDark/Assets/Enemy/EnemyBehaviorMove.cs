@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace Assets.Enemy
 {
-    public class EnemyBehaviorMove :  iEnemyBehavior
+    public class EnemyBehaviorMove :ScriptableObject, iEnemyBehavior
     {
+
         public void Enter()
         {
             Debug.Log(" enter move");
@@ -18,6 +19,7 @@ namespace Assets.Enemy
         public void Update()
         {
             Debug.Log(" update move");
+            
         }
     }
 }

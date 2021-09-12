@@ -3,30 +3,33 @@ using UnityEngine;
 
 namespace Assets.Enemy
 {
-    public class EnemyBehaviorIdle : StateMachineBehaviour, iEnemyBehavior
+    public class EnemyBehaviorIdle : BaseBehavior//, iEnemyBehavior
     {
-        private EnemyData enemy;
-        
 
-        private bool isLagViewsCancel = true;
-        public void Enter()
+        internal override void Run()
         {
-            Debug.Log(" enter idle");
+            throw new System.NotImplementedException();
         }
 
-        public void Exit()
-        {
-            Debug.Log(" exit idle");
-        }
+        //private bool isLagViewsCancel = true;
+        //public void Enter()
+        //{
+        //    Debug.Log(" enter idle");
+        //}
 
-        public void Update()
-        {
-            //Debug.Log(" update idle");
-        }
+        //public void Exit()
+        //{
+        //    Debug.Log(" exit idle");
+        //}
 
-        void CancelLag()
-        {
-            isLagViewsCancel = true;
-        }
+        //public void Update()
+        //{
+        //    Debug.Log(" update idle");
+        //}
+
+        //void CancelLag()
+        //{
+        //    isLagViewsCancel = true;
+        //}
     }
 }

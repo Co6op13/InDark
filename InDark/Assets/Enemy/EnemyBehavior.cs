@@ -7,20 +7,24 @@ namespace Assets.Enemy
 {
     public class EnemyBehavior : MonoBehaviour
     {
+        internal EnemyData enemy;
+
+        [SerializeField] private iEnemyBehavior behaviorCurrent;
+
         private Dictionary<Type, iEnemyBehavior> behaviorMap;
-        private iEnemyBehavior behaviorCurrent;
+
 
         private void Start()
         {
             this.InitBehaviors();
-            this.SetDefaultBehavior();
+            //this.SetDefaultBehavior();
         }
 
         private void InitBehaviors()
         {
             this.behaviorMap = new Dictionary<Type, iEnemyBehavior>();
 
-            this.behaviorMap[typeof(EnemyBehaviorIdle)] = new EnemyBehaviorIdle();
+            //this.behaviorMap[typeof(EnemyBehaviorIdle)] = new EnemyBehaviorIdle();
             this.behaviorMap[typeof(EnemyBehaviorPatrol)] = new EnemyBehaviorPatrol();
             this.behaviorMap[typeof(EnemyBehaviorMove)] = new EnemyBehaviorMove();
             this.behaviorMap[typeof(EnemyBehaviorAttack)] = new EnemyBehaviorAttack();
@@ -30,20 +34,20 @@ namespace Assets.Enemy
         {
             //if (newBehavior != behaviorCurrent)
             //{
-                if (this.behaviorCurrent != null)
-                    this.behaviorCurrent.Exit();
+            if (this.behaviorCurrent != null)
+                this.behaviorCurrent.Exit();
 
-                this.behaviorCurrent = newBehavior;
-                this.behaviorCurrent.Enter();
+            this.behaviorCurrent = newBehavior;
+            this.behaviorCurrent.Enter();
             //}
         }
 
-        private void SetDefaultBehavior()
-        {
-            this.SetBehaviorIdle();
-        }
-        
-        private iEnemyBehavior GetBehavior<T>() where T :iEnemyBehavior
+        //private void SetDefaultBehavior()
+        //{
+        //    this.SetBehaviorIdle();
+        //}
+
+        private iEnemyBehavior GetBehavior<T>() where T : iEnemyBehavior
         {
             var type = typeof(T);
             return this.behaviorMap[type];
@@ -55,12 +59,12 @@ namespace Assets.Enemy
                 this.behaviorCurrent.Update();
         }
 
-        internal void SetBehaviorIdle()
-        {
-            var behavior = this.GetBehavior<EnemyBehaviorIdle>();
-            this.SetNewBehavior(behavior);
+        //internal void SetBehaviorIdle()
+        //{
+        //    var behavior = this.GetBehavior<EnemyBehaviorIdle>();
+        //    this.SetNewBehavior(behavior);
 
-        }
+        //}
         internal void SetBehaviorMove()
         {
             var behavior = this.GetBehavior<EnemyBehaviorMove>();
