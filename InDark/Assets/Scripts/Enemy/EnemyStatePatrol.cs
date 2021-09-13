@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-namespace Assets.Enemy
+namespace Scripts.Enemy
 {
     [CreateAssetMenu]
     public class EnemyStatePatrol : BaseState
@@ -11,14 +11,18 @@ namespace Assets.Enemy
         internal override void Init()
         {
             enemy = enemyStateMachine.gameObject.GetComponent<EnemyData>();
-            var randomVector = new Vector3(Random.Range(-enemy.PatrolDistance, enemy.PatrolDistance), Random.Range(-enemy.PatrolDistance, enemy.PatrolDistance), enemy.transform.position.z);          
+            var randomVector = new Vector3(Random.Range(-enemy.patrolDistance, enemy.patrolDistance), Random.Range(-enemy.patrolDistance, enemy.patrolDistance), enemy.transform.position.z);          
             randomPosition = enemy.pointStart + randomVector;           
         }
 
         internal override void Run()
         {
             MoveRandomPosition();
-            TargetSearch();
+            if (!enemy.isLagView)
+            {
+                enemyStateMachine.LagView(enemy.timeLagBetweenViews);
+                TargetSearch();
+            }
         }
 
         private void MoveRandomPosition()
@@ -37,9 +41,10 @@ namespace Assets.Enemy
             {
                 if ((enemy.transform.position - target.transform.position).sqrMagnitude < enemy.viewDistance * enemy.viewDistance)
                 {
-                    var dir = (target.transform.position - enemy.transform.position);
-                    Debug.DrawRay(enemy.transform.position, enemy.transform.TransformVector(dir), Color.red);
-                    RaycastHit2D hit = Physics2D.Raycast(enemy.transform.position, enemy.transform.TransformVector(dir));
+                    var dir = enemyStateMachine.GetDirection(enemy.transform.position, target.transform.position);
+                    //var dir = (target.transform.position - enemy.transform.position);
+                    //Debug.DrawRay(enemy.transform.position, enemy.transform.TransformVector(dir), Color.red);
+                    RaycastHit2D hit = Physics2D.Raycast(enemy.transform.position, dir);
 
                     if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Character"))
                     {

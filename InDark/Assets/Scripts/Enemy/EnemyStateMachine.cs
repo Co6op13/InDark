@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Enemy
+namespace Scripts.Enemy
 {
     
     public class EnemyStateMachine : MonoBehaviour
@@ -60,6 +60,45 @@ namespace Assets.Enemy
             direction = direction.normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             return angle;
+        }
+
+        internal void Attaking(GameObject target)
+        {
+            if (!enemy.isAttaking)
+            {
+                if (target.gameObject.GetComponent<HealthData>() != null)
+                {
+                    enemy.isAttaking = true;
+                    Debug.Log("типа атака");
+                    target.gameObject.GetComponent<HealthData>().GetDamage(enemy.damage);
+                    Invoke("CancelThisAttack", enemy.attackSpeed);
+                }               
+            }
+        }
+
+        void CancelThisAttack()
+        {
+
+            enemy.isAttaking = false;
+        }
+
+        internal void LagView(float lag)
+        {
+            Debug.Log("Lag");
+            enemy.isLagView = true;
+            Invoke("CancelLagView", lag);
+        }
+
+        void CancelLagView()
+        {
+            enemy.isLagView = false;
+        }
+
+        internal Vector3 GetDirection(Vector3 rayStart, Vector3 rayEnd)
+        {
+            var dir = enemy.transform.TransformVector(rayEnd - rayStart);            
+            Debug.DrawRay(rayStart, dir, Color.red);
+            return dir;
         }
     }
 }

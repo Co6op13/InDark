@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Enemy
+namespace Scripts.Enemy
 {
     public abstract class BaseBehavior : ScriptableObject
     {

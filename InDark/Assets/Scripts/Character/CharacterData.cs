@@ -1,19 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts;
 
-namespace Character
+namespace Scripts.Character
 {
-
-    public class CharacterData : MonoBehaviour
+    public class CharacterData : HealthData
     {
         internal CharacterMovement movement;
         internal CharacterInput input;
         internal CharacterAnimation animationC;
         internal CharacterCollision collision;
-        // данные персонажа
-        [SerializeField] internal int maxHP = 10;
-        [SerializeField] internal int HPcurrent;
         [SerializeField] internal int maxAmmo9mm;
         [SerializeField] internal int ammo9mmCurrent;
         [SerializeField] internal float walkSpeed = 4f;
@@ -47,7 +44,7 @@ namespace Character
             animationC = gameObject.GetComponent<CharacterAnimation>();
             collision = gameObject.GetComponent<CharacterCollision>();
             boxCollider2D = GetComponent<BoxCollider2D>();
-            HPcurrent = maxHP;
+           // currentHP = maxHP;
             staminaCurrent = MaxStamina;
             roadFlareCurrent = maxRoadFlare;
             medicalChestCurrent = maxMedicineChest;
@@ -93,25 +90,7 @@ namespace Character
         {
             Debug.Log("Не реализованно");
         }
-        public void GetDamage(int damage)
-        {
-            if (HPcurrent - damage > 0)
-            {
-                HPcurrent -= damage;
-            }
-            else
-                CharacterDie();
-        }
-
-        public void GetHeal(int heal)
-        {
-            if (HPcurrent + heal < maxHP)
-            {
-                HPcurrent += heal;
-            }
-            else
-                HPcurrent = maxHP;
-        }
+       
 
         public void GetAmmo9MM(int ammo)
         {

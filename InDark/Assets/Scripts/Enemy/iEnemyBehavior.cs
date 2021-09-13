@@ -1,4 +1,4 @@
-﻿namespace Assets.Enemy
+﻿namespace Scripts.Enemy
 {
     public interface iEnemyBehavior 
     {

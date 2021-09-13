@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.Enemy
+namespace Scripts.Enemy
 {
     public class EnemyBehaviorIdle : BaseBehavior//, iEnemyBehavior
     {
