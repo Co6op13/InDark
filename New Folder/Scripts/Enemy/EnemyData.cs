@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Scripts.Enemy
 {
+    [RequireComponent(typeof(BoxCollider2D))]
+   // [RequireComponent(typeof(Rigidbody2D))]
     public class EnemyData : HealthData
     {
         [SerializeField] internal bool isActiv = false;

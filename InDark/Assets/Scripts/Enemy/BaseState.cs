@@ -1,18 +1,18 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Scripts.Enemy
+namespace Assets.Scripts.Enemy
 {
+    [CreateAssetMenu]
     public abstract class BaseState : ScriptableObject
     {
         public bool isFinished { get; protected set; }
-        [HideInInspector] internal EnemyStateMachine enemyStateMachine;
-        [HideInInspector] internal EnemyData enemy;
+        [HideInInspector] internal BaseEnemy enemy;
 
-        internal virtual void Init()
-        {
-            enemy = enemyStateMachine.gameObject.GetComponent<EnemyData>();
-        }
+        internal abstract void Init();
         internal abstract void Run();
+
+
     }
 }
+    

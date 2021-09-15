@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace Scripts.Character
 {
-    [RequireComponent(typeof(BoxCollider2D))]
-
     public class CharacterMovement : MonoBehaviour
     {
         private CharacterData character;

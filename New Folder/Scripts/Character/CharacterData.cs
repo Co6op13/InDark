@@ -5,6 +5,8 @@ using Scripts;
 
 namespace Scripts.Character
 {
+    [RequireComponent(typeof(BoxCollider2D))]
+   // [RequireComponent(typeof(Rigidbody2D))]
     public class CharacterData : HealthData
     {
         internal CharacterMovement movement;
