@@ -49,12 +49,12 @@ public abstract class ObjectPooler : MonoBehaviour
         }
 
         GameObject takingObject = poolDictionary[tag].Dequeue();
-        //if (takingObject.activeSelf)
-        //{
-        //    GameObject newObject = Instantiate(poolDictionary[tag].prefab);
-        //    newObject.transform.SetParent(parentObject);
-        //    takingObject = newObject;
-        //}
+        if (takingObject.activeSelf)
+        {
+            GameObject newObject = Instantiate(poolDictionary[tag].Dequeue());
+            newObject.transform.SetParent(parentObject);
+            takingObject = newObject;
+        }
 
         takingObject.transform.position = posistion;
         takingObject.transform.rotation = rotation;

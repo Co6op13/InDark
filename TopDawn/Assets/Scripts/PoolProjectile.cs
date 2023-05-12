@@ -4,8 +4,15 @@ using UnityEngine;
 
 
 
-public class PoolProjectile : MonoBehaviour
+public class PoolProjectile : ObjectPooler
 {
-    [SerializeField] private int count;
+    #region Singleton
+    public static PoolProjectile Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+    #endregion;
 
 }
