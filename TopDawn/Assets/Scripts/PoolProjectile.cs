@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class PoolProjectile : ObjectPooler
+public class PoolProjectile : ObjectPooler2test<Projectile>
 {
     #region Singleton
     public static PoolProjectile Instance;

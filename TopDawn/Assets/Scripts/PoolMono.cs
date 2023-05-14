@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class PoolMono<T> where T : MonoBehaviour
+public  class PoolMono<T> where T : MonoBehaviour
 {
     private string tag;
     public T prefab { get; }

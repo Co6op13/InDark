@@ -3,41 +3,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour, IProjectile
+[System.Serializable]
+public  class Projectile: MonoBehaviour, IProjectile 
 {
-    [SerializeField] public float speed;
-    [SerializeField] public int damage;
-    [SerializeField] public float lifeTime;
-    [SerializeField] public Vector2 direction;
+    [SerializeField] private float speed;
+    [SerializeField] private int damage;
+    [SerializeField] private float range;
+    [SerializeField] private Vector2 direction;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private TagsVariable tagTarget;
+    private Vector2 start;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine("LifeRouting");
+        //StartCoroutine("LifeRouting");
     }
-    public void SetVariable(float speed, int damage, float lifeTime, Vector2 direction)
+    public void SetVariable(float speed, int damage, float range, Vector2 direction, TagsVariable tagTarget)
     {
         this.speed = speed;
         this.damage = damage;
-        this.lifeTime = lifeTime;
+        this.range = range;
         this.direction = direction;
+        this.tagTarget = tagTarget;
+        
     }
 
     private void OnEnable()
     {
-        StartCoroutine("LifeRoutine");
+        start = transform.position;
+        StartCoroutine(CheckDistance());
         rb.AddForce(direction * speed);
     }
 
     private void OnDisable()
     {
-        StopCoroutine("LifeRoutine");
+        StopCoroutine(CheckDistance());
     }
 
-    private IEnumerator LifeRoutine()
+    private IEnumerator CheckDistance()
     {
-        yield return new WaitForSecondsRealtime(this.lifeTime);
+        yield return new WaitUntil(() => Vector2.Distance(start, transform.position) > range);
 
         this.Deactivate();
     }
@@ -47,4 +53,20 @@ public class Projectile : MonoBehaviour, IProjectile
         gameObject.SetActive(false);
     }
 
+    public String GetName()
+    {
+        return gameObject.name;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.GetComponent<IHP>());
+        
+        if (collision.gameObject.tag == tagTarget.ToString() && collision.transform.TryGetComponent(out IHP hp))        
+        {
+            hp.TakesDamage(damage);
+            Debug.Log("hit" + collision.gameObject.name);
+            Deactivate();
+        }
+    }
 }

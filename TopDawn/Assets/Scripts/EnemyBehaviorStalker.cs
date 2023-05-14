@@ -27,7 +27,7 @@ public class EnemyBehaviorStalker : IEnemyBehavior
 
     public void Update()
     {
-        Debug.Log(IsVisibleObject.CheckVisible(ai.Rb.transform, ai.PlayerTarget, stalkerSettings.AttackDistance, stalkerSettings.ViewedLayer));
+        //Debug.Log(IsVisibleObject.CheckVisible(ai.Rb.transform, ai.PlayerTarget, stalkerSettings.AttackDistance, stalkerSettings.ViewedLayer));
         if (IsVisibleObject.CheckVisible(ai.Rb.transform, ai.PlayerTarget, stalkerSettings.AttackDistance, stalkerSettings.ViewedLayer))
         {
             ai.CanMovie = false;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    public GameObject prefab;
+    public Weapon weapon;
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +17,7 @@ public class test : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var particle = PoolProjectile.Instance.GetFromPool(prefab.name, Vector2.one, transform.rotation);
-            particle.SetActive(true);
+            weapon.Attack();
         }    
     }
 }
