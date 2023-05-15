@@ -16,7 +16,7 @@ public class EnemyBehaviorFindLostTarget : Behavior
         ai.CanMovie = false;
         for (int i = 0; i < pointSarch.Length; i++)
         {
-            pointSarch[i] = GetRandomPositionWithCheckVisible();
+            pointSarch[i].position = GetRandomPositionWithCheckVisible();
         }
         Debug.Log("FindLostTarget Enter");
         currentPointIndex = 0;
@@ -43,9 +43,9 @@ public class EnemyBehaviorFindLostTarget : Behavior
 
         }
         Debug.Log(p);
-        //Transform point = Instantiate(emptyGameObject, newPosition, transform.rotation).transform;
+       
 
-        return point;
+        return newPosition;
     }
 
     public override void Exit()
