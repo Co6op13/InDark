@@ -3,47 +3,47 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class EnemyBehaviorPatrol : IEnemyBehavior
+public class EnemyBehaviorPatrol : Behavior
 {
-    private EnemyAI ai;
-    private PatrolSettings patrolSettings;
-    private int currentPointIndex;
 
-    public EnemyBehaviorPatrol(EnemyAI ai, PatrolSettings patrolPath)
-    {
-        this.ai = ai;
-        this.patrolSettings = patrolPath;
-    }
+    [SerializeField] private List<Transform> path;
+    [SerializeField] private float timeWaitinPoint;
+
+    private int currentPointIndex;
 
     private void CheckWaypoint()
     {
-        if (Vector2.Distance(patrolSettings.Path[currentPointIndex].transform.position, ai.transform.position) > 1f)
+        if (Vector2.Distance(path[currentPointIndex].transform.position, ai.transform.position) > 1f)
         {
-            ai.TargetToMovie = patrolSettings.Path[currentPointIndex].transform;
+            ai.TargetToMovie = path[currentPointIndex].transform;
         }
         else
+        {
             GetNextPatrolpoint();
+            ai.CanMovie = false;
+            Invoke("Wait", timeWaitinPoint);
+        }
     }
 
     private void GetNextPatrolpoint()
     {
         currentPointIndex++;
-        if (currentPointIndex >= patrolSettings.Path.Count)
+        if (currentPointIndex >= path.Count)
             currentPointIndex = 0;
     }
 
-    public void Enter()
+    public override void Enter()
     {
         Debug.Log("Patrol Enter");
         ai.CanMovie = true;
     }
 
-    public void Exit()
+    public override void Exit()
     {
         Debug.Log("Patrol Exit");
     }
 
-    public void Update()
+    public override void UpdateBehavior()
     {
         CheckWaypoint();
         CheckPlayer();
@@ -51,10 +51,16 @@ public class EnemyBehaviorPatrol : IEnemyBehavior
 
     private void CheckPlayer()
     {
-        if (Vector2.Distance(ai.PlayerTarget.position, ai.Rb.position) < patrolSettings.ViewingDistance)
+        if (IsVisibleObject.CheckVisible(ai.Rb.transform, ai.PlayerTarget, viewingDistance, viewedLayer))
         {
-            ai.isSeePlayer = true;
+            //ai.isSeePlayer = true;
+            ai.Aggressiv = true;
             ai.SetBehaviorStalker();
         }
+    }
+
+    private void Wait()
+    {
+        ai.CanMovie = true;
     }
 }

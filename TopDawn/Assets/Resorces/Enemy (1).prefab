@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9047199193729110664}
   - component: {fileID: 9047199193729110665}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,12 +96,12 @@ GameObject:
   - component: {fileID: 9047199195094865718}
   - component: {fileID: 3238340252694790723}
   - component: {fileID: 9047199195094865716}
-  - component: {fileID: 9047199195094865721}
-  - component: {fileID: 9047199195094865723}
-  - component: {fileID: 9047199195094865722}
+  - component: {fileID: 5767761405992866729}
+  - component: {fileID: 7796608546911771468}
   - component: {fileID: 9047199195094865713}
   - component: {fileID: 9047199195094865715}
   - component: {fileID: 9047199195094865714}
+  - component: {fileID: 7518633647053900855}
   m_Layer: 7
   m_Name: Enemy (1)
   m_TagString: Untagged
@@ -141,6 +141,7 @@ MonoBehaviour:
   TargetToMovie: {fileID: 0}
   PlayerTarget: {fileID: 0}
   CanMovie: 0
+  Aggressiv: 0
   rb: {fileID: 9047199195094865714}
   seeker: {fileID: 9047199195094865716}
   pathWalker: {fileID: 9047199195094865713}
@@ -187,7 +188,7 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &9047199195094865721
+--- !u!114 &5767761405992866729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,44 +197,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 9047199195094865712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b115b3e9ad3ffb24e92f1dbeabf83c97, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d85a27937ffdf742b8af139ee3df60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewingDistance: 5
+  viewedLayer:
+    serializedVersion: 2
+    m_Bits: 1088
   path:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &7796608546911771468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047199195094865712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a800cec8350fa439f16d9f2666b0a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   viewingDistance: 6
---- !u!114 &9047199195094865723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9047199195094865712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1de1bfb47d4b4a4d9c58a2552147b92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackDistance: 6
-  Weapon: {fileID: 0}
---- !u!114 &9047199195094865722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9047199195094865712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51c82002d7c6f2a4392770c1064cf497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackDistance: 3
-  ViewedLayer:
+  viewedLayer:
     serializedVersion: 2
     m_Bits: 1088
+  attackDistance: 4
+  stalkingTime: 2
+  checkVisibleTarget: 0.5
+  targetIsVisible: 0
+  currentStalkingTime: 0
 --- !u!114 &9047199195094865713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +298,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7518633647053900855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047199195094865712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a111bb14923170c43a4a936821ae9bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewingDistance: 6
+  viewedLayer:
+    serializedVersion: 2
+    m_Bits: 1088
+  searchRadius: 5
+  obstacle:
+    serializedVersion: 2
+    m_Bits: 1024
+  emptyGameObject: {fileID: 0}
 --- !u!1 &9047199195574226121
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9047199195574226122}
   - component: {fileID: 9047199195574226123}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,6 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c938add2e73324bacf6a1567bea1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagTarget: 1
   damage: 5
   rateOfFire: 2
   projectileSpeed: 20

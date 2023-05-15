@@ -1,41 +1,65 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviorStalker : IEnemyBehavior
+public class EnemyBehaviorStalker : Behavior
 {
-    private EnemyAI ai;
-    private StalkerSettings stalkerSettings;
+    [SerializeField] private float attackDistance;
+    [SerializeField] private float stalkingTime;
+    [SerializeField] private float checkVisibleTarget;
+    [SerializeField] private bool targetIsVisible;
+    [SerializeField] private float currentStalkingTime;
 
-    public EnemyBehaviorStalker(EnemyAI ai, StalkerSettings settings)
+    public override void Enter()
     {
-        this.ai = ai;
-        this.stalkerSettings = settings;
-    }
-
-    public void Enter()
-    {
+        ai = GetComponent<EnemyAI>();
         Debug.Log("Stalker mod Enter");
         ai.TargetToMovie = ai.PlayerTarget;
-        //ai.PathWalker.endReachedDistance = stalkerSettings.attackDistance;
+        currentStalkingTime = stalkingTime;
+        StartCoroutine(CheckedVisibleTarget());
     }
 
-    public void Exit()
+    private IEnumerator CheckedVisibleTarget()
+    {
+        while (currentStalkingTime > 0)
+        {
+            if (targetIsVisible = IsVisibleObject.CheckVisible(ai.Rb.transform, ai.PlayerTarget, viewingDistance, viewedLayer))
+            {
+                currentStalkingTime = stalkingTime;
+            }
+            else
+            {                
+                currentStalkingTime -= checkVisibleTarget;
+            }
+
+            yield return new WaitForSeconds(checkVisibleTarget);
+        }
+        StopCoroutine(CheckedVisibleTarget());
+        ai.SetBehaviorFindLostTarget();      
+    }
+
+    public override void Exit()
     {
         Debug.Log("Stalker mod Exit");
+        StopCoroutine(CheckedVisibleTarget());
     }
 
-    public void Update()
+    public override void UpdateBehavior()
     {
-        //Debug.Log(IsVisibleObject.CheckVisible(ai.Rb.transform, ai.PlayerTarget, stalkerSettings.AttackDistance, stalkerSettings.ViewedLayer));
-        if (IsVisibleObject.CheckVisible(ai.Rb.transform, ai.PlayerTarget, stalkerSettings.AttackDistance, stalkerSettings.ViewedLayer))
+        StalkingTarget();
+    }
+
+    private void StalkingTarget()
+    {
+        if (targetIsVisible && Vector2.Distance(ai.PlayerTarget.position, ai.Rb.position) < attackDistance)
         {
             ai.CanMovie = false;
+
         }
         else
         {
             ai.CanMovie = true;
         }
-
     }
 }

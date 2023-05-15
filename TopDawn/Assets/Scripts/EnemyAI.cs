@@ -6,11 +6,10 @@ using System;
 
 public class EnemyAI : MonoBehaviour
 {
-
-
     [SerializeField] public Transform TargetToMovie;
     [SerializeField] public Transform PlayerTarget;
     [SerializeField] public bool CanMovie;
+    [SerializeField] public bool Aggressiv;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Seeker seeker;
     [SerializeField] private PathWalker pathWalker;
@@ -34,8 +33,11 @@ public class EnemyAI : MonoBehaviour
     {
         this.behavioraMap = new Dictionary<Type, IEnemyBehavior>();
 
-        this.behavioraMap[typeof(EnemyBehaviorPatrol)] = new EnemyBehaviorPatrol(this, GetComponent<PatrolSettings>());
-        this.behavioraMap[typeof(EnemyBehaviorStalker)] = new EnemyBehaviorStalker(this, GetComponent<StalkerSettings>());
+        this.behavioraMap[typeof(EnemyBehaviorPatrol)] = GetComponent<EnemyBehaviorPatrol>();
+        this.behavioraMap[typeof(EnemyBehaviorStalker)] = GetComponent<EnemyBehaviorStalker>();
+        this.behavioraMap[typeof(EnemyBehaviorAttack)] = GetComponent<EnemyBehaviorAttack>();
+        this.behavioraMap[typeof(EnemyBehaviorFindLostTarget)] = GetComponent<EnemyBehaviorFindLostTarget>();
+
     }
     private void SetBehaviorDefault()
     {
@@ -70,10 +72,16 @@ public class EnemyAI : MonoBehaviour
         this.SetBehavir(behavior);
     }
 
+    public void SetBehaviorFindLostTarget()
+    {
+        var behavior = this.GetBehavior<EnemyBehaviorFindLostTarget>();
+        this.SetBehavir(behavior);
+    }
+
 
 
     private void FixedUpdate()
     {
-        behaviorCurrent?.Update();
+        behaviorCurrent?.UpdateBehavior();
     }
 }

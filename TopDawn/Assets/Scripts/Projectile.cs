@@ -7,11 +7,12 @@ using UnityEngine;
 public  class Projectile: MonoBehaviour, IProjectile 
 {
     [SerializeField] private float speed;
+    [SerializeField] private DamageType damageType;
     [SerializeField] private int damage;
     [SerializeField] private float range;
     [SerializeField] private Vector2 direction;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private TagsVariable tagTarget;
+    private TagsVariable tagTarget;
     private Vector2 start;
 
     private void Awake()
@@ -64,7 +65,7 @@ public  class Projectile: MonoBehaviour, IProjectile
         
         if (collision.gameObject.tag == tagTarget.ToString() && collision.transform.TryGetComponent(out IHP hp))        
         {
-            hp.TakesDamage(damage);
+            hp.TakesDamage(damage, damageType);
             Debug.Log("hit" + collision.gameObject.name);
             Deactivate();
         }

@@ -100,10 +100,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  damageType: 0
   damage: 5
   range: 3
   direction: {x: 1, y: 0}
   rb: {fileID: 1337138683544694579}
+  tagTarget: 2
 --- !u!58 &1337138683544694578
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -2,21 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviorAttack : IEnemyBehavior
+public class EnemyBehaviorAttack : Behavior
 {
-    private EnemyAI ai;
-    private AttackSettings attackSettings;
-    public void Enter()
+
+    //[SerializeField] public float AttackDistance;
+    [SerializeField] public GameObject Weapon;
+
+    public override void Enter()
     {
         throw new System.NotImplementedException();
     }
 
-    public void Exit()
+    public override void Exit()
     {
         throw new System.NotImplementedException();
     }
 
-    public void Update()
+    public override void UpdateBehavior()
     {
         throw new System.NotImplementedException();
     }

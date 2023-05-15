@@ -26,7 +26,7 @@ public class HP : MonoBehaviour, IHP
         OnEnable();
     }
 
-    public void TakesDamage(int damage)
+    public void TakesDamage(int damage, DamageType damageType = DamageType.Default)
     {
         if (currentHP - damage > 0)
         {

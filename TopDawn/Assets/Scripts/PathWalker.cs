@@ -31,7 +31,7 @@ public class PathWalker : MonoBehaviour
 
     void UpdatePath()
     {
-        if (ai.TargetToMovie && seeker.IsDone())
+        if (ai.TargetToMovie != null && seeker.IsDone())
         {
             seeker.StartPath(rb.position, ai.TargetToMovie.position, OnPathComplite);
         }
@@ -77,7 +77,6 @@ public class PathWalker : MonoBehaviour
         }
 
         rb.AddForce(direction * currentSpeed);
-
     }
 
     private void GetNextWaypoint()
