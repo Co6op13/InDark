@@ -47,9 +47,9 @@ TagManager:
   - name: Ground
     uniqueID: 3416395861
     locked: 0
-  - name: Enemy
+  - name: StaticObject
     uniqueID: 4154947531
     locked: 0
-  - name: Wall
-    uniqueID: 1808282699
+  - name: MovedObject
+    uniqueID: 2872135591
     locked: 0

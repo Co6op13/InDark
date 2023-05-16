@@ -4,6 +4,7 @@ using UnityEngine;
 using Pathfinding;
 using System;
 
+///[SelectionBase]
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] public Transform TargetToMovie;
