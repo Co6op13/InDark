@@ -31,4 +31,21 @@ public static class IsVisibleObject
         }
         return result;
     }
+
+    public static bool CheckDistance(Vector2 from, Vector2 target, LayerMask mask, out float distance, out Vector2 colliderPosition)
+    {
+        bool result = false;
+        RaycastHit2D hit = Physics2D.Linecast(from, target, mask);
+        colliderPosition = target;
+        distance = Vector2.Distance(from, target); ;
+        if (hit.collider != null)
+        {
+            Debug.DrawLine(from, target);
+            result = true;
+            colliderPosition = hit.point;
+            distance = Vector2.Distance(from, hit.point);
+        }
+        return result;
+    }
+
 }
