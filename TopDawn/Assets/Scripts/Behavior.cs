@@ -7,7 +7,7 @@ public abstract class Behavior : MonoBehaviour, IEnemyBehavior
     [SerializeField] protected LayerMask viewedLayer;
     protected EnemyAI ai;
 
-    private void Start()
+    private void Awake()
     {
         ai = GetComponent<EnemyAI>();
     }
