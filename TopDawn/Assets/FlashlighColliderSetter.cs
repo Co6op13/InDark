@@ -7,14 +7,10 @@ using UnityEngine.Rendering.Universal;
 public class FlashlighColliderSetter : MonoBehaviour
 {
     [SerializeField] private Light2D flashlight;
-    [SerializeField] private EdgeCollider2D edgeCollider2D;
+    [SerializeField] private Transform collider2d;
     [SerializeField] private float delaySet;
     [Space]
-    [SerializeField] private float hTriangle;
-    [SerializeField] private float aAngele;
-    [SerializeField] private float hypotenuse;
-    [SerializeField] private Vector3 dir;
-    [SerializeField] private Transform point;
+    [SerializeField] private AnimationCurve scaleCurve;
 
     private void Start()
     {
@@ -33,14 +29,14 @@ public class FlashlighColliderSetter : MonoBehaviour
 
     private void GetPoints()
     {
-        hypotenuse = flashlight.pointLightOuterRadius;
-        aAngele = flashlight.pointLightInnerAngle;
+        //hypotenuse = flashlight.pointLightOuterRadius;
+        //aAngele = flashlight.pointLightInnerAngle;
 
-        hTriangle = hypotenuse * Mathf.Cos(aAngele * 0.5f);
+        //hTriangle = hypotenuse * Mathf.Cos(aAngele * 0.5f);
 
-         dir = AccessoryMetods.GetVectorFromAngle(aAngele);
-        point.position = dir * hTriangle;
-        Debug.DrawRay(transform.position, dir,  Color.red);
+        // dir = AccessoryMetods.GetVectorFromAngle(aAngele);
+        //point.position = dir * hTriangle;
+        //Debug.DrawRay(transform.position, dir,  Color.red);
         
         //Debug.DrawLine(transform.position, dir * hypotenuse, Color.yellow);
     }

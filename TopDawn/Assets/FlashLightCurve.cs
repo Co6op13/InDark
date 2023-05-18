@@ -3,7 +3,7 @@ using UnityEngine.Rendering.Universal;
 
 public class FlashLightCurve : MonoBehaviour
 {
-    [SerializeField] private float proc;
+    [SerializeField] public float PercentDistanceOfLight { get; private set; }
     [SerializeField] private float lightDistance;
     [SerializeField] private float distanceToMause;
     [Space]
@@ -36,11 +36,11 @@ public class FlashLightCurve : MonoBehaviour
         lightDistance = distanceToMause > maxDistance ? maxDistance :
               distanceToMause < minDistance ? minDistance : distanceToMause;
 
-        proc = (lightDistance - minDistance) / (maxDistance - minDistance) ;
+        PercentDistanceOfLight = (lightDistance - minDistance) / (maxDistance - minDistance) ;
 
-        SetAngle(proc);
-        SetIntencity(proc);
-        SetRadius(proc);        
+        SetAngle(PercentDistanceOfLight);
+        SetIntencity(PercentDistanceOfLight);
+        SetRadius(PercentDistanceOfLight);        
     }
 
     private void SetIntencity (float proc)
