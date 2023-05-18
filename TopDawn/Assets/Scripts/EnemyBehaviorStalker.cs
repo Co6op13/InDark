@@ -24,7 +24,7 @@ public class EnemyBehaviorStalker : Behavior
     {
         while (currentStalkingTime > 0)
         {
-            if (targetIsVisible = IsVisibleObject.CheckVisible(ai.Rb.transform, ai.PlayerTarget, viewingDistance, viewedLayer))
+            if (targetIsVisible = AccessoryMetods.CheckVisible(ai.Rb.transform, ai.PlayerTarget, viewingDistance, viewedLayer))
             {
                 currentStalkingTime = stalkingTime;
             }

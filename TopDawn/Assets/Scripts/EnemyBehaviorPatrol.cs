@@ -51,7 +51,7 @@ public class EnemyBehaviorPatrol : Behavior
 
     private void CheckPlayer()
     {
-        if (IsVisibleObject.CheckVisible(ai.Rb.transform, ai.PlayerTarget, viewingDistance, viewedLayer))
+        if (AccessoryMetods.CheckVisible(ai.Rb.transform, ai.PlayerTarget, viewingDistance, viewedLayer))
         {
             //ai.isSeePlayer = true;
             ai.Aggressiv = true;

@@ -35,7 +35,7 @@ public class EnemyBehaviorFindLostTarget : Behavior
         while (!p)
         {
             newPosition = ai.Rb.position + new Vector2(Random.Range(-searchRadius, searchRadius), Random.Range(-searchRadius, searchRadius));
-            if (!IsVisibleObject.CheckVisible(transform.position, newPosition, obstacle))
+            if (!AccessoryMetods.CheckVisible(transform.position, newPosition, obstacle))
             {
                 p = true;
                 break;
@@ -76,7 +76,7 @@ public class EnemyBehaviorFindLostTarget : Behavior
 
     private void CheckPlayer()
     {
-        if (IsVisibleObject.CheckVisible(ai.Rb.transform, ai.PlayerTarget, viewingDistance, viewedLayer))
+        if (AccessoryMetods.CheckVisible(ai.Rb.transform, ai.PlayerTarget, viewingDistance, viewedLayer))
         {          
             ai.Aggressiv = true;
             ai.SetBehaviorStalker();

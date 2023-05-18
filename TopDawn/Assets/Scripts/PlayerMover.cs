@@ -23,6 +23,7 @@ public class PlayerMover : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+  
     public void OnRunning(InputAction.CallbackContext context)
     {
         isRunning = context.ReadValueAsButton();

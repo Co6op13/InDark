@@ -19,7 +19,7 @@ public class FlashLight : MonoBehaviour
     [SerializeField] [Range(0, 10)] private float intesity;
     [SerializeField] [Range(0, 10)] private float coefficientIntensity;
     [Space]
-   // [SerializeField] private Light2D lightSpot;
+    // [SerializeField] private Light2D lightSpot;
     [SerializeField] private LayerMask surface;
     //[SerializeField] [Range(0, 3)] private float coefficientSpotRadius;
     [Space]
@@ -64,14 +64,14 @@ public class FlashLight : MonoBehaviour
         //lightSpot.intensity = currentIntensyty;
     }
 
-    private void SetIntencity (float distance)
+    private void SetIntencity(float distance)
     {
         lightBeam.intensity = (intesity * coefficientIntensity) / distance;
     }
 
     private void SetAngle(float distance)
     {
-        lightBeam.pointLightInnerAngle = coefficienInnertAngle / distance * innerAngle ;
+        lightBeam.pointLightInnerAngle = coefficienInnertAngle / distance * innerAngle;
         lightBeam.pointLightOuterAngle = coefficientOutertAngle / distance * outrerAngle;
         //lightBeam.pointLightOuterAngle = outer;
     }
