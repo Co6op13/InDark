@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private PathWalker pathWalker;
 
     public bool isSeePlayer;
-    private Dictionary<Type, IEnemyBehavior> behavioraMap;
+    [SerializeField] private Dictionary<Type, IEnemyBehavior> behavioraMap;
     private IEnemyBehavior behaviorCurrent;
 
     public PathWalker PathWalker { get => pathWalker; }
@@ -29,7 +29,6 @@ public class EnemyAI : MonoBehaviour
         this.SetBehaviorDefault();
     }
 
-
     private void InitBehaviors()
     {
         this.behavioraMap = new Dictionary<Type, IEnemyBehavior>();
@@ -38,6 +37,7 @@ public class EnemyAI : MonoBehaviour
         this.behavioraMap[typeof(EnemyBehaviorStalker)] = GetComponent<EnemyBehaviorStalker>();
         this.behavioraMap[typeof(EnemyBehaviorAttack)] = GetComponent<EnemyBehaviorAttack>();
         this.behavioraMap[typeof(EnemyBehaviorFindLostTarget)] = GetComponent<EnemyBehaviorFindLostTarget>();
+        this.behavioraMap[typeof(EnemyBehavirFearLight)] = GetComponent<EnemyBehavirFearLight>();
 
     }
     private void SetBehaviorDefault()
@@ -45,7 +45,7 @@ public class EnemyAI : MonoBehaviour
         SetBehaviorPatrol();
     }
 
-    private void SetBehavir(IEnemyBehavior newBehavior)
+    public void SetBehavir(IEnemyBehavior newBehavior)
     {
         if (this.behaviorCurrent != null)
             this.behaviorCurrent.Exit();
@@ -79,7 +79,11 @@ public class EnemyAI : MonoBehaviour
         this.SetBehavir(behavior);
     }
 
-
+    public void SetBehaviorFearLight()
+    {
+        var behavior = this.GetBehavior<EnemyBehavirFearLight>();
+        this.SetBehavir(behavior);
+    }
 
     private void FixedUpdate()
     {

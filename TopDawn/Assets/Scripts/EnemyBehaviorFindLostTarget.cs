@@ -42,7 +42,7 @@ public class EnemyBehaviorFindLostTarget : Behavior
             }
 
         }
-        Debug.Log(p);
+      //  Debug.Log(p);
        
 
         return newPosition;

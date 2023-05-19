@@ -20,6 +20,22 @@ public static class AccessoryMetods
         return result;
     }
 
+    public static bool CheckVisible(Transform from, Transform target, LayerMask mask)
+    {
+        bool result = false;
+        RaycastHit2D hit = Physics2D.Linecast(from.position, target.position, mask);
+        if (hit.collider != null) 
+        {
+            if (hit.collider.gameObject == target.gameObject)
+            {
+
+                Debug.DrawLine(from.position, target.position);
+                result = true;
+            }
+        }
+        return result;
+    }
+
     public static bool CheckVisible(Vector2 from, Vector2 target, LayerMask mask)
     {
         bool result = false;
@@ -32,6 +48,20 @@ public static class AccessoryMetods
         return result;
     }
 
+    public static bool CheckVisible(Vector2 from, Vector2 target, LayerMask mask, out GameObject gameObject)
+    {
+        gameObject = null;
+        bool result = false;
+        RaycastHit2D hit = Physics2D.Linecast(from, target, mask);
+        if (hit.collider != null)
+        {
+            Debug.DrawLine(from, target);
+            result = true;
+            gameObject = hit.collider.gameObject;
+        }
+        return result;
+    }
+
     public static bool CheckDistance(Vector2 from, Vector2 target, LayerMask mask, out float distance, out Vector2 colliderPosition)
     {
         bool result = false;
@@ -40,7 +70,7 @@ public static class AccessoryMetods
         distance = Vector2.Distance(from, target); ;
         if (hit.collider != null)
         {
-            Debug.DrawLine(from, target);
+           // Debug.DrawLine(from, target);
             result = true;
             colliderPosition = hit.point;
             distance = Vector2.Distance(from, hit.point);

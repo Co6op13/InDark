@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class RotateWeapon : MonoBehaviour
 {
    // [SerializeField] private Transform weapon;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera currenCamera;
     [SerializeField] private Rigidbody2D rb;
     public Vector2 mausePosition { get; private set; }
     public Vector2 lookDirection { get; private set;  }
@@ -17,7 +17,7 @@ public class RotateWeapon : MonoBehaviour
     }
     public void OnMousePosition (InputAction.CallbackContext context)
     {
-        mausePosition = camera.ScreenToWorldPoint( context.ReadValue<Vector2>());
+        mausePosition = currenCamera.ScreenToWorldPoint( context.ReadValue<Vector2>());
         lookDirection = (mausePosition - (Vector2)transform.position).normalized;
     }
 

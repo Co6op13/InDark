@@ -127,14 +127,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minIntencyty: 0.2
   maxIntencyty: 0.5
-  minInnerRadius: 0.2
-  maxInnerRadius: 1
-  minOuterRadius: 15
-  maxOuterRadius: 20
+  minInnerRadius: 1
+  maxInnerRadius: 2
+  minOuterRadius: 8
+  maxOuterRadius: 10
   lifeTime: 2
   decaylifeTime: 5
   ratioLerp: 2
-  decay: 0.0114
+  decay: 0.00579
   timeHasPassed: 0
 --- !u!58 &1802305102692479035
 CircleCollider2D:
@@ -169,7 +169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1802305103789240476
 Transform:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
