@@ -37,7 +37,7 @@ public class EnemyAI : MonoBehaviour
         this.behavioraMap[typeof(EnemyBehaviorStalker)] = GetComponent<EnemyBehaviorStalker>();
         this.behavioraMap[typeof(EnemyBehaviorAttack)] = GetComponent<EnemyBehaviorAttack>();
         this.behavioraMap[typeof(EnemyBehaviorFindLostTarget)] = GetComponent<EnemyBehaviorFindLostTarget>();
-        this.behavioraMap[typeof(EnemyBehavirFearLight)] = GetComponent<EnemyBehavirFearLight>();
+        this.behavioraMap[typeof(EnemyBehavirReaactionToLight)] = GetComponent<EnemyBehavirReaactionToLight>();
 
     }
     private void SetBehaviorDefault()
@@ -47,6 +47,7 @@ public class EnemyAI : MonoBehaviour
 
     public void SetBehavir(IEnemyBehavior newBehavior)
     {
+        Debug.Log("5");
         if (this.behaviorCurrent != null)
             this.behaviorCurrent.Exit();
 
@@ -79,9 +80,9 @@ public class EnemyAI : MonoBehaviour
         this.SetBehavir(behavior);
     }
 
-    public void SetBehaviorFearLight()
+    public void SetBehaviorReaactionToLight()
     {
-        var behavior = this.GetBehavior<EnemyBehavirFearLight>();
+        var behavior = this.GetBehavior<EnemyBehavirReaactionToLight>();
         this.SetBehavir(behavior);
     }
 

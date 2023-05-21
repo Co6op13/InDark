@@ -19,7 +19,10 @@ public class EnemyBehaviorStalker : Behavior
         currentStalkingTime = stalkingTime;
         StartCoroutine(CheckedVisibleTarget());
     }
-
+    /// <summary>
+    /// /////////////////////////////need add enter to attack behavior
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CheckedVisibleTarget()
     {
         while (currentStalkingTime > 0)
@@ -47,6 +50,7 @@ public class EnemyBehaviorStalker : Behavior
 
     public override void UpdateBehavior()
     {
+        Debug.Log("Stalker Update");
         StalkingTarget();
     }
 

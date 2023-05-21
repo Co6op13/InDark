@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyBehaviorPatrol : Behavior
 {
-
     [SerializeField] private List<Transform> path;
     [SerializeField] private float timeWaitinPoint;
 

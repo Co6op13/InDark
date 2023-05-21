@@ -70,31 +70,18 @@ public class FlashLightCurve : MonoBehaviour
         return Vector2.Distance(transform.position, weapon.mausePosition);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {             
+        if (collision.gameObject != null && AccessoryMetods.CheckVisible(transform, collision.transform, vievedLayer))
+        {
+            Debug.Log(collision.name);
+            collision.gameObject.GetComponent<LightDetector>().LightON(gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-        var direction = (collision.transform.position - transform.position).normalized;
-
-        float angle = transform.eulerAngles.z;
-        Debug.Log(angle);
-
-        //Vector3 angle;
-        //Vector3 axis;
-        
-        //transform.rotation.ToAngleAxis(out angle, out axis);
-        //Debug.Log("Angle: " + angle + " Axis: " + axis);
-
-        //if ( angle < lightBeam.pointLightInnerAngle)
-        //{
-        //    Debug.DrawLine(transform.position, -transform.right);
-        //   // Debug.DrawRay(transform.position, direction, Color.red);
-
-        //    if (AccessoryMetods.CheckVisible(transform, collision.transform, vievedLayer))
-        //    {
-        //        collision.gameObject.GetComponent<IEnemyBehavior>().LightDetected();
-        //    }
-
-        //}
+        collision.gameObject.GetComponent<LightDetector>().LightOFF();
     }
 
     private void OnDrawGizmos()

@@ -5,7 +5,7 @@ public class EnemyBehaviorFindLostTarget : Behavior
 {
     [SerializeField] private float searchRadius;
     [SerializeField] private LayerMask obstacle;
-    [SerializeField] private Transform emptyGameObject;
+    //[SerializeField] private Transform emptyGameObject;
     [SerializeField] private Transform[] pointSarch;
     [SerializeField] private int currentPointIndex;
     [SerializeField] private float timeWaitinPoint;

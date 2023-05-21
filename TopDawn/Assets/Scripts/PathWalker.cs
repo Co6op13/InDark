@@ -7,14 +7,15 @@ public class PathWalker : MonoBehaviour
 {
     [SerializeField] private EnemyAI ai;
     [SerializeField] private Seeker seeker;
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float acceleration;
     [SerializeField] private float slowdown;
     [SerializeField] private float nextWaipointDistance;
-    [SerializeField] private Rigidbody2D rb;
     [SerializeField] public float endReachedDistance;
     [SerializeField] public float slowdownDistance;
     [SerializeField] private float currentSpeed;
+    [SerializeField] private float delayUpdatepath;
     private Path path;
     private int currentWaypoint = 0;
    // private bool endOfpath = false;
@@ -25,7 +26,7 @@ public class PathWalker : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
-        InvokeRepeating("UpdatePath", 0f, 0.5f);
+        InvokeRepeating("UpdatePath", 0f, delayUpdatepath);
     }
 
 
