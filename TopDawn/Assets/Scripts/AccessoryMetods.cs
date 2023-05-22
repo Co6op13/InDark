@@ -24,7 +24,7 @@ public static class AccessoryMetods
     {
         bool result = false;
         RaycastHit2D hit = Physics2D.Linecast(from.position, target.position, mask);
-        if (hit.collider != null) 
+        if (hit.collider != null)
         {
             if (hit.collider.gameObject == target.gameObject)
             {
@@ -70,7 +70,7 @@ public static class AccessoryMetods
         distance = Vector2.Distance(from, target); ;
         if (hit.collider != null)
         {
-           // Debug.DrawLine(from, target);
+            // Debug.DrawLine(from, target);
             result = true;
             colliderPosition = hit.point;
             distance = Vector2.Distance(from, hit.point);
@@ -102,6 +102,36 @@ public static class AccessoryMetods
 
         return angle;
     }
+
+    public static Vector2 GetRandomPositionWithCheckVisible(Vector2 from, float searchRadius, LayerMask obstacle)
+    {
+        Vector2 newPosition = from;
+        bool p = false;
+        while (!p)
+        {
+            newPosition = from + new Vector2(Random.Range(-searchRadius, searchRadius), Random.Range(-searchRadius, searchRadius));
+            if (!AccessoryMetods.CheckVisible(from, newPosition, obstacle))
+            {
+                p = true;
+                break;
+            }
+
+        }
+        return newPosition;
+    }
+
+    public static Vector2 GetPositionAvoidLightWithCheckVisible(Vector2 from, Vector2 directionToLight, LayerMask obstacle)
+    {
+        Vector2 newPosition = from;
+        bool p = false;
+       for (int i = 0; i < 3; i++)
+        {
+            //int d = Random.Range()
+            //newPosition = Vector2.Perpendicular(directionToLight);
+        }
+        return newPosition  - directionToLight * 3;
+    }
+
 }
 
 

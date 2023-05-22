@@ -11,7 +11,7 @@ public class LightDetector : MonoBehaviour
     [SerializeField] private bool isUnderLight;
     [SerializeField] private float delayCheckLight;
     [SerializeField] private int i;
-    [SerializeField] public GameObject lightObject { get; private set; }
+    [SerializeField] public GameObject lightObject;
 
     public void LightON(GameObject lightObject)
     {

@@ -50,7 +50,7 @@ public class EnemyBehaviorStalker : Behavior
 
     public override void UpdateBehavior()
     {
-        Debug.Log("Stalker Update");
+        //Debug.Log("Stalker Update");
         StalkingTarget();
     }
 

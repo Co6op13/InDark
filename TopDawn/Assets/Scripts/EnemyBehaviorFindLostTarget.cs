@@ -16,7 +16,7 @@ public class EnemyBehaviorFindLostTarget : Behavior
         ai.CanMovie = false;
         for (int i = 0; i < pointSarch.Length; i++)
         {
-            pointSarch[i].position = GetRandomPositionWithCheckVisible();
+            pointSarch[i].position = AccessoryMetods.GetRandomPositionWithCheckVisible(transform.position, searchRadius, obstacle);
         }
         Debug.Log("FindLostTarget Enter");
         currentPointIndex = 0;
@@ -28,25 +28,6 @@ public class EnemyBehaviorFindLostTarget : Behavior
         ai.CanMovie = true;
     }
 
-    private Vector2 GetRandomPositionWithCheckVisible()
-    {       
-        Vector2 newPosition = transform.position;
-        bool p = false;
-        while (!p)
-        {
-            newPosition = ai.Rb.position + new Vector2(Random.Range(-searchRadius, searchRadius), Random.Range(-searchRadius, searchRadius));
-            if (!AccessoryMetods.CheckVisible(transform.position, newPosition, obstacle))
-            {
-                p = true;
-                break;
-            }
-
-        }
-      //  Debug.Log(p);
-       
-
-        return newPosition;
-    }
 
     public override void Exit()
     {
@@ -92,4 +73,23 @@ public class EnemyBehaviorFindLostTarget : Behavior
             ai.SetBehaviorPatrol();
         }
     }
+    //private Vector2 GetRandomPositionWithCheckVisible(Vector2 form, float searchRadius, LayerMask obstacle)
+    //{       
+    //    Vector2 newPosition = transform.position;
+    //    bool p = false;
+    //    while (!p)
+    //    {
+    //        newPosition = ai.Rb.position + new Vector2(Random.Range(-searchRadius, searchRadius), Random.Range(-searchRadius, searchRadius));
+    //        if (!AccessoryMetods.CheckVisible(transform.position, newPosition, obstacle))
+    //        {
+    //            p = true;
+    //            break;
+    //        }
+
+    //    }
+    //  //  Debug.Log(p);
+       
+
+    //    return newPosition;
+    //}
 }

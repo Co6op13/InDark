@@ -87,5 +87,17 @@ public class PathWalker : MonoBehaviour
         {
             currentWaypoint++;
         }
+
+        //float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+        //while
+        ////for (int i = nextWaipointDistance; i >= 1; i--)
+        //{
+        //    if (!AccessoryMetods.CheckVisible(transform.position, path.vectorPath[currentWaypoint + i], obstacle))
+        //    {
+        //        currentWaypoint += i;
+        //        break;
+        //    }
+        //}
     }
 }
