@@ -39,9 +39,14 @@ public class FlashLightCurve : MonoBehaviour
         SetAngle(PercentDistanceOfLight);
         SetIntencity(PercentDistanceOfLight);
         SetRadius(PercentDistanceOfLight);
-        transform.localScale = new Vector3(lightBeam.pointLightInnerRadius * XScaleColliderCurve.Evaluate(PercentDistanceOfLight), 
-            lightBeam.pointLightInnerRadius * YScaleColliderCurve.Evaluate(PercentDistanceOfLight), 1f);
+        SetScaleCollider();
                                             
+    }
+
+    private void SetScaleCollider()
+    {
+        transform.localScale = new Vector3(lightBeam.pointLightInnerAngle * XScaleColliderCurve.Evaluate(PercentDistanceOfLight),
+            lightBeam.pointLightInnerRadius * YScaleColliderCurve.Evaluate(PercentDistanceOfLight), 1f);
     }
 
     private void SetIntencity(float proc)

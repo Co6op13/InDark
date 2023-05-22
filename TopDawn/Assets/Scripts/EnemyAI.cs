@@ -4,7 +4,7 @@ using UnityEngine;
 using Pathfinding;
 using System;
 
-///[SelectionBase]
+[SelectionBase]
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] public Transform TargetToMovie;
@@ -27,18 +27,17 @@ public class EnemyAI : MonoBehaviour
     {
         this.InitBehaviors();
         this.SetBehaviorDefault();
+        PlayerTarget = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void InitBehaviors()
     {
         this.behavioraMap = new Dictionary<Type, IEnemyBehavior>();
-
         this.behavioraMap[typeof(EnemyBehaviorPatrol)] = GetComponent<EnemyBehaviorPatrol>();
         this.behavioraMap[typeof(EnemyBehaviorStalker)] = GetComponent<EnemyBehaviorStalker>();
         this.behavioraMap[typeof(EnemyBehaviorAttack)] = GetComponent<EnemyBehaviorAttack>();
         this.behavioraMap[typeof(EnemyBehaviorFindLostTarget)] = GetComponent<EnemyBehaviorFindLostTarget>();
         this.behavioraMap[typeof(EnemyBehavirReaactionToLight)] = GetComponent<EnemyBehavirReaactionToLight>();
-
     }
     private void SetBehaviorDefault()
     {
